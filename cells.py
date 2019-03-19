@@ -202,6 +202,6 @@ plot_station(path_cell_Ullsfj,       path_carb_Ullsfj,      path_chla, sheet = '
 plot_station(path_cell_Ytre,         path_carb_Ytre,        path_chla, sheet = 'Norskehavet3', stationname ='YtreKvænangen',  to_title = 'VR4 Ytre Kvænangen')'''
 
 
-plot_station(path_cell_blodskytodden_f, path_carb_blodskytodden_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Blodskytodden',  to_title = ' VR23 Blodskytodden')
+plot_station(path_cell_blodskytodden_f, path_carb_blodskytodden_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Blodskytodden',  to_title = 'VR23 Blodskytodden')
 plot_station(path_cell_Oksebås_f, path_carb_Oksebås_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Oksebåsneset',  to_title = 'VT76 Oksebåsneset')
 plot_station(path_cell_Tanafj_f, path_carb_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

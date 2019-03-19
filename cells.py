@@ -121,23 +121,21 @@ def plot_station(path_cell,path_carb_bugoynes,path_chla,sheet,stationname,to_tit
 
     fig.tight_layout(pad = 0.3)
 
-    #plt.savefig(r'{}\Plot\{}.png'.format(path,to_title))
-    plt.show()
+    plt.savefig(r'{}\Plot\{}.png'.format(path,to_title))
+    #plt.show()
     #print (new_df)
 
 path_chla = '\klorofyll Norskehavet 1_3_Barentshavet.xlsx'
 
 
-path_carb_bugoynes = '\Barentshavet\Bugøynes_karbon_2017_2018.xlsx'
-path_cell_bugoynes = '\Barentshavet\Bugøynes_celler.L_2017_2018.xlsx'  
+path_carb_bugoynes = r'\Barentshavet\Bugøynes_karbon_2017_2018.xlsx'
+path_cell_bugoynes = r'\Barentshavet\Bugøynes_celler.L_2017_2018.xlsx'  
 
+path_carb_langfjordnes = r'\Barentshavet\Langfjordnes_karbon_2017_2018.xlsx'
+path_cell_langfjordnes = r'\Barentshavet\Langfjordnes_celler.L_2017_2018.xlsx'  
 
-path_carb_langfjordnes = '\Barentshavet\Langfjordnes_karbon_2017_2018.xlsx'
-path_cell_langfjordnes = '\Barentshavet\Langfjordnes_celler.L_2017_2018.xlsx'  
-
-
-path_carb_Tanafjord = '\Barentshavet\Tanafjorden_VR24_Karbon_2018.xlsx'
-path_cell_Tanafjord = '\Barentshavet\Tanafjord_VR24_celler.L_2018.xlsx'  
+path_carb_Tanafjord = r'\Barentshavet\Tanafjorden_VR24_Karbon_2018.xlsx'
+path_cell_Tanafjord = r'\Barentshavet\Tanafjord_VR24_celler.L_2018.xlsx'  
 
 path_carb_kongsbakk = r'\Norskehavet Nord 1\kongsbakk_karbon_2017_2018.xlsx'
 path_cell_kongsbakk = r'\Norskehavet Nord 1\kongsbakk_celler.L_2017_2018.xlsx'
@@ -173,21 +171,37 @@ path_cell_Ytre =  r'\Norskehavet Nord 3\Ytre kvæn_celler.L_2018.xlsx'
 path_carb_Ytre =  r'\Norskehavet Nord 3\Ytre kvæn_karbon_2018.xlsx'
 
 
+path_cell_blodskytodden_f = r'\BarentshavetFerrybox\blodskytodden_celler.L_2018.xlsx'
+path_carb_blodskytodden_f = r'\BarentshavetFerrybox\blodskytodden_karbon_2018.xlsx'
 
-'''plot_station(path_cell_bugoynes,     path_carb_bugoynes,    path_chla, sheet = 'Barentshavet', stationname ='Bugøynes',     to_title = 'VT22')    
-plot_station(path_cell_langfjordnes, path_carb_langfjordnes,path_chla, sheet = 'Barentshavet', stationname ='langfjordnes', to_title = 'langfjordnes')    
-plot_station(path_cell_Tanafjord,    path_carb_Tanafjord,   path_chla, sheet = 'Barentshavet', stationname ='Tanafjorden',  to_title = 'VR24')
+path_cell_Oksebås_f = r'\BarentshavetFerrybox\Oksebås_Celler.L_2018.xlsx'
+path_carb_Oksebås_f = r'\BarentshavetFerrybox\oksebås_karbon_2018.xlsx'
 
-plot_station(path_cell_kongsbakk,    path_carb_kongsbakk,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Kongsbakkneset',      to_title = 'Kongsbakkneset')
-plot_station(path_cell_straumsfj,    path_carb_straumsfj,   path_chla, sheet = 'Nord1Norskehavet', stationname ='StraumsfjordenVR54',  to_title = 'VR54')
-plot_station(path_cell_tjukkenes,    path_carb_tjukkenes,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Tjukkeneset',         to_title = 'Tjukkeneset')
+path_cell_Tanafj_f = r'\BarentshavetFerrybox\Tanafj_VR25_Celler.L_2018.xlsx'
+path_carb_Tanafj_f = r'\BarentshavetFerrybox\tanafj_VR25_Karbon_2018.xlsx'
 
-plot_station(path_cell_alvenes,      path_carb_alvenes,     path_chla, sheet = 'Nord2Norskehavet', stationname ='Alvenes',  to_title = 'Alvenes')
-plot_station(path_cell_Setså,        path_carb_Setså,       path_chla, sheet = 'Nord2Norskehavet', stationname ='Setså',  to_title = 'Setså')
-plot_station(path_cell_Reisafjorden,        path_carb_Reisafjorden,       path_chla, sheet = 'Norskehavet3', stationname ='Reisafjorden',  to_title = 'Reisafjorden')
 
-plot_station(path_cell_Spilderbu,        path_carb_Spilderbu,       path_chla, sheet = 'Norskehavet3', stationname ='Spilderbukta',  to_title = 'Spilderbukta')
-plot_station(path_cell_Storbukta,        path_carb_Storbukta,       path_chla, sheet = 'Norskehavet3', stationname ='Storbukta',  to_title = 'Storbukta')
-plot_station(path_cell_Sørfj,        path_carb_Sørfj,       path_chla, sheet = 'Norskehavet3', stationname ='SørfjordenYtre',  to_title = 'SørfjordenYtre')
-plot_station(path_cell_Ullsfj,        path_carb_Ullsfj,       path_chla, sheet = 'Norskehavet3', stationname ='Ullsfjorden',  to_title = 'Ullsfjorden')'''
-plot_station(path_cell_Ytre,        path_carb_Ytre,       path_chla, sheet = 'Norskehavet3', stationname ='YtreKvænangen',  to_title = 'YtreKvænangen')
+
+'''
+plot_station(path_cell_bugoynes,     path_carb_bugoynes,    path_chla, sheet = 'Barentshavet', stationname ='Bugøynes',     to_title = 'VR21 Bugøynes')    
+plot_station(path_cell_langfjordnes, path_carb_langfjordnes,path_chla, sheet = 'Barentshavet', stationname ='langfjordnes', to_title = 'VR7 Langfjordnes')    
+plot_station(path_cell_Tanafjord,    path_carb_Tanafjord,   path_chla, sheet = 'Barentshavet', stationname ='Tanafjorden',  to_title = 'VR24 Tanafjorden')
+
+plot_station(path_cell_kongsbakk,    path_carb_kongsbakk,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Kongsbakkneset',      to_title = 'VT43 Kongsbakkneset')
+plot_station(path_cell_straumsfj,    path_carb_straumsfj,   path_chla, sheet = 'Nord1Norskehavet', stationname ='StraumsfjordenVR54',  to_title = 'VR54 Straumsfjorden')
+plot_station(path_cell_tjukkenes,    path_carb_tjukkenes,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Tjukkeneset',         to_title = 'VT28 Tjukkeneset')
+
+plot_station(path_cell_alvenes,      path_carb_alvenes,      path_chla, sheet = 'Nord2Norskehavet', stationname ='Alvenes',  to_title = 'VT81 Alvenes')
+plot_station(path_cell_Setså,        path_carb_Setså,        path_chla, sheet = 'Nord2Norskehavet', stationname ='Setså',    to_title = 'VT82 Setså')
+plot_station(path_cell_Reisafjorden, path_carb_Reisafjorden, path_chla, sheet = 'Norskehavet3', stationname ='Reisafjorden', to_title = 'VR56 Reisafjorden')
+
+plot_station(path_cell_Spilderbu,    path_carb_Spilderbu,   path_chla, sheet = 'Norskehavet3', stationname ='Spilderbukta',   to_title = 'VR55 Spilderbukta')
+plot_station(path_cell_Storbukta,    path_carb_Storbukta,   path_chla, sheet = 'Norskehavet3', stationname ='Storbukta',      to_title = 'VR57 Storbukta')
+plot_station(path_cell_Sørfj,        path_carb_Sørfj,       path_chla, sheet = 'Norskehavet3', stationname ='SørfjordenYtre', to_title = 'VR59 Sørfjorden Ytre')
+plot_station(path_cell_Ullsfj,       path_carb_Ullsfj,      path_chla, sheet = 'Norskehavet3', stationname ='Ullsfjorden',    to_title = 'VR58 Ullsfjorden')
+plot_station(path_cell_Ytre,         path_carb_Ytre,        path_chla, sheet = 'Norskehavet3', stationname ='YtreKvænangen',  to_title = 'VR4 Ytre Kvænangen')'''
+
+
+plot_station(path_cell_blodskytodden_f, path_carb_blodskytodden_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Blodskytodden',  to_title = ' VR23 Blodskytodden')
+plot_station(path_cell_Oksebås_f, path_carb_Oksebås_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Oksebåsneset',  to_title = 'VT76 Oksebåsneset')
+plot_station(path_cell_Tanafj_f, path_carb_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

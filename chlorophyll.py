@@ -13,9 +13,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt 
 sns.set()
 
-
-
-
 def get_station(df,name):
     df_st = df.where(df.StationName == name)
     return df_st

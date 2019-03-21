@@ -136,11 +136,11 @@ def plot_station(path_cell,path_carb,path_chla,sheet,stationname,to_title):
 
 
 
-def plot_station_2subplot(path_carb,path_chla,sheet,stationname,to_title):
+def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     
     
 
-    file2 = r'{}{}'.format(path,path_carb)
+    file2 = r'{}{}'.format(path,path_cell)
     file_klor = r'{}{}'.format(path,path_chla)
 
     to_names2= pd.read_excel(file2,nrows = 1,skiprows = 3).values[0]
@@ -225,7 +225,8 @@ def plot_station_2subplot(path_carb,path_chla,sheet,stationname,to_title):
     fig.tight_layout(pad = 0.4)
 
     plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
-    #plt.show()
+    
+    plt.show()
     #print (new_df)
 
 
@@ -315,28 +316,29 @@ def call_plot_3subpl():
 def call_plot_2subpl():
 
 
-    plot_station_2subplot(path_carb_bugoynes,    path_chla, sheet = 'Barentshavet', stationname ='Bugøynes',     to_title = 'VR21 Bugøynes')    
-    plot_station_2subplot(path_carb_langfjordnes,path_chla, sheet = 'Barentshavet', stationname ='langfjordnes', to_title = 'VR7 Langfjordnes')    
-    plot_station_2subplot(path_carb_Tanafjord,   path_chla, sheet = 'Barentshavet', stationname ='Tanafjorden',  to_title = 'VR24 Tanafjorden')
+    plot_station_2subplot(path_cell_bugoynes,    path_chla, sheet = 'Barentshavet', stationname ='Bugøynes',     to_title = 'VR21 Bugøynes')    
+    plot_station_2subplot(path_cell_langfjordnes,path_chla, sheet = 'Barentshavet', stationname ='langfjordnes', to_title = 'VR7 Langfjordnes')    
+    plot_station_2subplot(path_cell_Tanafjord,   path_chla, sheet = 'Barentshavet', stationname ='Tanafjorden',  to_title = 'VR24 Tanafjorden')
 
-    plot_station_2subplot(path_carb_kongsbakk,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Kongsbakkneset',      to_title = 'VT43 Kongsbakkneset')
-    plot_station_2subplot(path_carb_straumsfj,   path_chla, sheet = 'Nord1Norskehavet', stationname ='StraumsfjordenVR54',  to_title = 'VR54 Straumsfjorden')
-    plot_station_2subplot(path_carb_tjukkenes,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Tjukkeneset',         to_title = 'VT28 Tjukkeneset')
+    plot_station_2subplot(path_cell_kongsbakk,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Kongsbakkneset',      to_title = 'VT43 Kongsbakkneset')
+    plot_station_2subplot(path_cell_straumsfj,   path_chla, sheet = 'Nord1Norskehavet', stationname ='StraumsfjordenVR54',  to_title = 'VR54 Straumsfjorden')
+    plot_station_2subplot(path_cell_tjukkenes,   path_chla, sheet = 'Nord1Norskehavet', stationname ='Tjukkeneset',         to_title = 'VT28 Tjukkeneset')
 
-    plot_station_2subplot(path_carb_alvenes,      path_chla, sheet = 'Nord2Norskehavet', stationname ='Alvenes',  to_title = 'VT81 Alvenes')
-    plot_station_2subplot(path_carb_Setså,        path_chla, sheet = 'Nord2Norskehavet', stationname ='Setså',    to_title = 'VT82 Setså')
-    plot_station_2subplot(path_carb_Reisafjorden, path_chla, sheet = 'Norskehavet3', stationname ='Reisafjorden', to_title = 'VR56 Reisafjorden')
+    plot_station_2subplot(path_cell_alvenes,      path_chla, sheet = 'Nord2Norskehavet', stationname ='Alvenes',  to_title = 'VT81 Alvenes')
+    plot_station_2subplot(path_cell_Setså,        path_chla, sheet = 'Nord2Norskehavet', stationname ='Setså',    to_title = 'VT82 Setså')
+    plot_station_2subplot(path_cell_Reisafjorden, path_chla, sheet = 'Norskehavet3', stationname ='Reisafjorden', to_title = 'VR56 Reisafjorden')
 
-    plot_station_2subplot(path_carb_Spilderbu,   path_chla, sheet = 'Norskehavet3', stationname ='Spilderbukta',   to_title = 'VR55 Spilderbukta')
-    plot_station_2subplot(path_carb_Storbukta,   path_chla, sheet = 'Norskehavet3', stationname ='Storbukta',      to_title = 'VR57 Storbukta')
-    plot_station_2subplot(path_carb_Sørfj,       path_chla, sheet = 'Norskehavet3', stationname ='SørfjordenYtre', to_title = 'VR59 Sørfjorden Ytre')
-    plot_station_2subplot(path_carb_Ullsfj,      path_chla, sheet = 'Norskehavet3', stationname ='Ullsfjorden',    to_title = 'VR58 Ullsfjorden')
-    plot_station_2subplot(path_carb_Ytre,        path_chla, sheet = 'Norskehavet3', stationname ='YtreKvænangen',  to_title = 'VR4 Ytre Kvænangen')
-
-
-    plot_station_2subplot(path_carb_blodskytodden_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Blodskytodden',  to_title = 'VR23 Blodskytodden')
-    plot_station_2subplot(path_carb_Oksebås_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Oksebåsneset',  to_title = 'VT76 Oksebåsneset')
-    plot_station_2subplot(path_carb_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+    plot_station_2subplot(path_cell_Spilderbu,   path_chla, sheet = 'Norskehavet3', stationname ='Spilderbukta',   to_title = 'VR55 Spilderbukta')
+    plot_station_2subplot(path_cell_Storbukta,   path_chla, sheet = 'Norskehavet3', stationname ='Storbukta',      to_title = 'VR57 Storbukta')
+    plot_station_2subplot(path_cell_Sørfj,       path_chla, sheet = 'Norskehavet3', stationname ='SørfjordenYtre', to_title = 'VR59 Sørfjorden Ytre')
+    plot_station_2subplot(path_cell_Ullsfj,      path_chla, sheet = 'Norskehavet3', stationname ='Ullsfjorden',    to_title = 'VR58 Ullsfjorden')
+    plot_station_2subplot(path_cell_Ytre,        path_chla, sheet = 'Norskehavet3', stationname ='YtreKvænangen',  to_title = 'VR4 Ytre Kvænangen')
 
 
-call_plot_2subpl()   
+    plot_station_2subplot(path_cell_blodskytodden_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Blodskytodden',  to_title = 'VR23 Blodskytodden')
+    plot_station_2subplot(path_cell_Oksebås_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Oksebåsneset',  to_title = 'VT76 Oksebåsneset')
+    plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+
+
+#call_plot_2subpl() 
+#plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

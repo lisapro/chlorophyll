@@ -188,11 +188,16 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
 
     ax0.set_xticks(dates3)
     ax1.set_xticks(dates2)  
-
+    
+ 
     for axis in [ax0,ax1]:
         axis.xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
         axis.tick_params(axis='x', rotation=30)
-        axis.set_xlim(dates2[0],dates2[-1])
+        if stationname in ['Tanafjordenytre','Blodskytodden','Oksebåsneset']:
+            axis.set_xlim(dates3[0],dates3[-1:])
+        else: 
+            axis.set_xlim(dates2[0],dates2[-1])
+
 
     df3_klor = df3_klor.dropna(how = 'all') 
 
@@ -201,6 +206,7 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     ax1.fill_between(dates2, 0,               v['1'],               label = one,alpha = a,color = colors[0])
     ax1.fill_between(dates2, v['1'],          v['1']+v['2'],        label = two,alpha = a,color = colors[1])
     ax1.fill_between(dates2, v['1'] + v['2'], v['1']+v['2']+v['3'], label = three,alpha = a,color = colors[2])
+
 
     if stationname in ['Bugøynes','Setså','Tanafjorden','Reisafjorden','langfjordnes','Tanafjordenytre']:
         ax1.legend(loc = 'upper left', frameon=True,facecolor = 'w', framealpha=0.5)        
@@ -225,7 +231,6 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     fig.tight_layout(pad = 0.4)
 
     plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
-    
     #plt.show()
     #print (new_df)
 
@@ -341,4 +346,4 @@ def call_plot_2subpl():
 
 
 call_plot_2subpl() 
-# plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+#plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

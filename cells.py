@@ -190,7 +190,7 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     ax1.set_xticks(dates2)  
 
     for axis in [ax0,ax1]:
-        axis.xaxis.set_major_formatter(mdates.DateFormatter('%y-%m-%d'))
+        axis.xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
         axis.tick_params(axis='x', rotation=30)
         axis.set_xlim(dates2[0],dates2[-1])
 
@@ -226,7 +226,7 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
 
     plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
     
-    plt.show()
+    #plt.show()
     #print (new_df)
 
 
@@ -340,5 +340,5 @@ def call_plot_2subpl():
     plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
 
 
-#call_plot_2subpl() 
-#plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+call_plot_2subpl() 
+# plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

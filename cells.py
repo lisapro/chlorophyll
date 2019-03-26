@@ -17,12 +17,13 @@ register_matplotlib_converters()
 import matplotlib.ticker as mtick 
 import matplotlib as mpl
 
-mpl.rcParams['axes.labelsize'] = 13
-mpl.rcParams['xtick.labelsize'] = 13
-mpl.rcParams['ytick.labelsize'] = 13
-mpl.rcParams['font.size'] = 13
+to_size = 13
+mpl.rcParams['axes.labelsize'] = to_size
+mpl.rcParams['xtick.labelsize'] = to_size
+mpl.rcParams['ytick.labelsize'] = to_size
+mpl.rcParams['font.size'] = to_size
 mpl.rcParams['legend.fontsize'] = 12
-mpl.rcParams['figure.titlesize'] = 13
+mpl.rcParams['figure.titlesize'] = to_size
 
 a = 1
 colors = ['#ee9a55','#4b85af','#BEBEBE']
@@ -130,8 +131,8 @@ def plot_station(path_cell,path_carb,path_chla,sheet,stationname,to_title):
 
     fig.tight_layout(pad = 0.3)
 
-    plt.savefig(r'{}\Plot\{}.png'.format(path,to_title))
-    #plt.show()
+    #plt.savefig(r'{}\Plot\{}.png'.format(path,to_title))
+    plt.show()
     #print (new_df)
 
 
@@ -172,10 +173,12 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
 
     new_df2_carb = get_sum(df2_carb)
     #figsize=(11.69,8.27)
-    fig = plt.figure(figsize=(8.27, 10))
-
-    ax0 = fig.add_subplot(2, 1, 1) # row-col-num
-    ax1 = fig.add_subplot(2, 1, 2) 
+    fig = plt.figure(figsize=(8.3, 12))
+    import matplotlib.gridspec as gridspec
+    gs = gridspec.GridSpec(2, 1)
+    gs.update(wspace=0.1, hspace = 0.33)
+    ax0 = plt.subplot(gs[0]) #fig.add_subplot(2, 1, 1) # row-col-num
+    ax1 = plt.subplot(gs[1]) #fig.add_subplot(2, 1, 2) 
     
     dates2 = to_names2[3:] 
 
@@ -226,12 +229,8 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
 
     ax1.yaxis.set_major_formatter( mtick.FuncFormatter(fmt))
 
-
-    #l = l.get_frame().set_facecolor('C0')
-    fig.tight_layout(pad = 0.4)
-
-    plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
-    #plt.show()
+    #plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
+    plt.show()
     #print (new_df)
 
 
@@ -345,5 +344,5 @@ def call_plot_2subpl():
     plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
 
 
-call_plot_2subpl() 
-#plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+#call_plot_2subpl() 
+plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

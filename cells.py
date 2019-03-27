@@ -157,6 +157,8 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     df3_klor = df3_klor.replace({ r'< 0.17$'}, {0}, regex=True)         
     df3_klor = df3_klor.replace({ r'< 0.16$'}, {0}, regex=True)     
     df3_klor = df3_klor.replace({ r'< 0,16$'}, {0}, regex=True)     
+    df3_klor = df3_klor.replace({ r'<0.16$'}, {0}, regex=True)     
+    df3_klor = df3_klor.replace({ r'<0,16$'}, {0}, regex=True)         
     df3_klor = df3_klor.replace({ r'< 0,22$'}, {0}, regex=True)   
     df3_klor = df3_klor.replace({ r'< 0.21$'}, {0}, regex=True)     
     df3_klor = df3_klor.replace({ r'<*$'}, {0}, regex=True) 
@@ -229,8 +231,8 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
 
     ax1.yaxis.set_major_formatter( mtick.FuncFormatter(fmt))
 
-    #plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
-    plt.show()
+    plt.savefig(r'{}\Plot\{}_2plot.png'.format(path,to_title))
+    #plt.show()
     #print (new_df)
 
 
@@ -344,5 +346,113 @@ def call_plot_2subpl():
     plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
 
 
+def plot_station_2subplot_sor(path_cell,path_chla,sheet,stationname,to_title):
+    path2 = r'K:\Avdeling\214-Oseanografi\DATABASER\OKOKYST_2017\Planktontellinger_2018\Norskehavet Sør l\Plot 2018'
+
+    file2 = r'{}{}'.format(path2,path_cell)
+    file_klor = r'{}{}'.format(path2,path_chla)
+
+    to_names2= pd.read_excel(file2,nrows = 1,skiprows = 3).values[0]
+    to_names2[0:3] = ['x','blank','type']
+
+    #cols_in_file = [0,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+
+    df2_carb = pd.read_excel(file2,names = to_names2)[4:]                                                                                  
+    df2_carb = df2_carb.replace({ r'^.$'}, {np.nan}, regex=True)      
+
+    df3_klor = pd.read_excel(file_klor,sheet_name = sheet)
+    df3_klor = df3_klor.replace({ r'<17$'}, {0}, regex=True)  
+    df3_klor = df3_klor.replace({ r'< 0.17$'}, {0}, regex=True)         
+    df3_klor = df3_klor.replace({ r'< 0.16$'}, {0}, regex=True)     
+    df3_klor = df3_klor.replace({ r'< 0,16$'}, {0}, regex=True)     
+    df3_klor = df3_klor.replace({ r'<0.16$'}, {0}, regex=True)     
+    df3_klor = df3_klor.replace({ r'<0,16$'}, {0}, regex=True)         
+    df3_klor = df3_klor.replace({ r'< 0,22$'}, {0}, regex=True)   
+    df3_klor = df3_klor.replace({ r'< 0.21$'}, {0}, regex=True)     
+    df3_klor = df3_klor.replace({ r'<*$'}, {0}, regex=True) 
+    
+    def get_sum(df):
+        new_df = pd.DataFrame()
+        for n in range(1,4):
+            d = df[df['x'] == n]
+            d= d.transpose().drop(['x','blank','type'], axis=0)
+            d = d.sum(axis = 1)
+            new_df[str(n)] = d
+        return new_df
+
+
+    new_df2_carb = get_sum(df2_carb)
+    #figsize=(11.69,8.27)
+    fig = plt.figure(figsize=(8.3, 12))
+    import matplotlib.gridspec as gridspec
+    gs = gridspec.GridSpec(2, 1)
+    gs.update(wspace=0.1, hspace = 0.33)
+    ax0 = plt.subplot(gs[0]) #fig.add_subplot(2, 1, 1) # row-col-num
+    ax1 = plt.subplot(gs[1]) #fig.add_subplot(2, 1, 2) 
+    
+    dates2 = to_names2[3:] 
+
+    try:    
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y') 
+    except ValueError:
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y %H:%M:%S')   
+    except ValueError:
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d-Y-%m-%d')   
+
+    ax0.set_xticks(dates3)
+    ax1.set_xticks(dates2)  
+    
+ 
+    for axis in [ax0,ax1]:
+        axis.xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
+        axis.tick_params(axis='x', rotation=30)
+        if stationname in ['Tanafjordenytre','Blodskytodden','Oksebåsneset']:
+            axis.set_xlim(dates3[0],dates3[-1:])
+        else: 
+            axis.set_xlim(dates2[0],dates2[-1])
+
+
+    df3_klor = df3_klor.dropna(how = 'all') 
+
+    ax0.plot(dates3 ,df3_klor[stationname])
+    v = new_df2_carb
+    ax1.fill_between(dates2, 0,               v['1'],               label = one,alpha = a,color = colors[0])
+    ax1.fill_between(dates2, v['1'],          v['1']+v['2'],        label = two,alpha = a,color = colors[1])
+    ax1.fill_between(dates2, v['1'] + v['2'], v['1']+v['2']+v['3'], label = three,alpha = a,color = colors[2])
+
+
+    if stationname in ['Bugøynes','Setså','Tanafjorden','Reisafjorden','langfjordnes','Tanafjordenytre']:
+        ax1.legend(loc = 'upper left', frameon=True,facecolor = 'w', framealpha=0.5)        
+    else: 
+        ax1.legend(loc = 'best', frameon=True,facecolor = 'w', framealpha=0.5)
+
+    ax0.set_ylabel( r'Klorofyll a $(\mu g/L)$')
+    ax1.set_ylabel(r'Antall celler/L')
+
+    ax0.set_title(r'{}: Klorofyll a $(\mu g/L)$'.format(to_title),fontsize = 13)        
+    ax1.set_title(r'{}: Fytoplankton antall celler'.format(to_title),fontsize = 13)   
+
+    def fmt(x, pos):
+        a, b = '{:.1e}'.format(x).split('e')
+        b = int(b)
+        return r'${} \times 10^{{{}}}$'.format(a, b)
+
+    ax1.yaxis.set_major_formatter( mtick.FuncFormatter(fmt))
+
+    plt.savefig(r'{}\{}.png'.format(path2,to_title))
+    #plt.show()
+    #print (new_df)
+
+
+path_chla2 = r'\klorofyll.xlsx'
+path_cell_korsen = r'\rapportCellerKorsen_2017_2018.xlsx'
+path_cell_skinbrokleia = r'\Skinnbrokleia_Celler.L_2017_2018.xlsx'
+path_cell_heroyfri = r'\herøyfj_celler.L_2018.xlsx'
 #call_plot_2subpl() 
-plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+plot_station_2subplot_sor(path_cell_korsen , path_chla2, sheet = 'Ark1', stationname ='Korsen VR51',  to_title = 'VR51 Korsen')
+plot_station_2subplot_sor(path_cell_skinbrokleia , path_chla2, sheet = 'Ark1', stationname ='Skinnabrokleia VR71',  to_title = 'VR71 Skinnabrokleia')
+plot_station_2subplot_sor(path_cell_heroyfri , path_chla2, sheet = 'Ark1', stationname ='Herøyfjorden VT72',  to_title = 'VT72 Herøyfjorden')
+#plot_station_2subplot(path_cell_Oksebås_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Oksebåsneset',  to_title = 'VT76 Oksebåsneset')
+#plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')
+
+#plot_station_2subplot(path_cell_Tanafj_f,        path_chla, sheet = 'BarentshavetFerrybox', stationname ='Tanafjordenytre',  to_title = 'VR25 Tanafjorden ytre')

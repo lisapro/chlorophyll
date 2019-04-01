@@ -448,7 +448,7 @@ path_chla2 = r'\klorofyll.xlsx'
 path_cell_korsen = r'\rapportCellerKorsen_2017_2018.xlsx'
 path_cell_skinbrokleia = r'\Skinnbrokleia_Celler.L_2017_2018.xlsx'
 path_cell_heroyfri = r'\herøyfj_celler.L_2018.xlsx'
-#call_plot_2subpl() 
-plot_station_2subplot_sor(path_cell_korsen , path_chla2, sheet = 'Ark1', stationname ='Korsen VR51',  to_title = 'VR51 Korsen')
-plot_station_2subplot_sor(path_cell_skinbrokleia , path_chla2, sheet = 'Ark1', stationname ='Skinnabrokleia VR71',  to_title = 'VR71 Skinnabrokleia')
-plot_station_2subplot_sor(path_cell_heroyfri , path_chla2, sheet = 'Ark1', stationname ='Herøyfjorden VT72',  to_title = 'VT72 Herøyfjorden')
+call_plot_2subpl() 
+#plot_station_2subplot_sor(path_cell_korsen , path_chla2, sheet = 'Ark1', stationname ='Korsen VR51',  to_title = 'VR51 Korsen')
+#plot_station_2subplot_sor(path_cell_skinbrokleia , path_chla2, sheet = 'Ark1', stationname ='Skinnabrokleia VR71',  to_title = 'VR71 Skinnabrokleia')
+#plot_station_2subplot_sor(path_cell_heroyfri , path_chla2, sheet = 'Ark1', stationname ='Herøyfjorden VT72',  to_title = 'VT72 Herøyfjorden')

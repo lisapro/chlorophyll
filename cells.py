@@ -139,8 +139,6 @@ def plot_station(path_cell,path_carb,path_chla,sheet,stationname,to_title):
 
 def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     
-    
-
     file2 = r'{}{}'.format(path,path_cell)
     file_klor = r'{}{}'.format(path,path_chla)
 
@@ -184,13 +182,16 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
     
     dates2 = to_names2[3:] 
 
-    try:    
-        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y') 
+    try: 
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%m/%d/%Y')   
+
     except ValueError:
         dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y %H:%M:%S')   
     except ValueError:
         dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d-Y-%m-%d')   
-
+    except ValueError:
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y') 
+        
     ax0.set_xticks(dates3)
     ax1.set_xticks(dates2)  
     
@@ -237,60 +238,7 @@ def plot_station_2subplot(path_cell,path_chla,sheet,stationname,to_title):
 
 
 
-path_chla = '\klorofyll Norskehavet 1_3_Barentshavet.xlsx'
 
-
-path_carb_bugoynes = r'\Barentshavet\Bugøynes_karbon_2017_2018.xlsx'
-path_cell_bugoynes = r'\Barentshavet\Bugøynes_celler.L_2017_2018.xlsx'  
-
-path_carb_langfjordnes = r'\Barentshavet\Langfjordnes_karbon_2017_2018.xlsx'
-path_cell_langfjordnes = r'\Barentshavet\Langfjordnes_celler.L_2017_2018.xlsx'  
-
-path_carb_Tanafjord = r'\Barentshavet\Tanafjorden_VR24_Karbon_2018.xlsx'
-path_cell_Tanafjord = r'\Barentshavet\Tanafjord_VR24_celler.L_2018.xlsx'  
-
-path_carb_kongsbakk = r'\Norskehavet Nord 1\kongsbakk_karbon_2017_2018.xlsx'
-path_cell_kongsbakk = r'\Norskehavet Nord 1\kongsbakk_celler.L_2017_2018.xlsx'
-
-path_carb_straumsfj = r'\Norskehavet Nord 1\straumsfj_karbon_2017_2018.xlsx'
-path_cell_straumsfj = r'\Norskehavet Nord 1\Straumsfj_celler.L_2017_2018.xlsx'
-
-path_cell_tjukkenes = r'\Norskehavet Nord 1\tjukkenes_celler.L_2017_2018.xlsx'
-path_carb_tjukkenes = r'\Norskehavet Nord 1\tjukkenes_karbon_2017_2108.xlsx'
-
-path_cell_alvenes = r'\Norskehavet Nord 2\alvenes_celler.L_2017_2018.xlsx'
-path_carb_alvenes = r'\Norskehavet Nord 2\alvenes_karbon_2017_2018.xlsx'
-
-path_cell_Setså = r'\Norskehavet Nord 2\setså_celler.L_2017_2018.xlsx'
-path_carb_Setså = r'\Norskehavet Nord 2\setså_karbon_2017_2018.xlsx'
-
-path_cell_Reisafjorden = r'\Norskehavet Nord 3\Reisafj_celler.L_2018.xlsx'
-path_carb_Reisafjorden = r'\Norskehavet Nord 3\Reisafj_karbon_2018.xlsx'
-
-path_cell_Spilderbu =  r'\Norskehavet Nord 3\Spilderbu_celler.L_2018.xlsx'
-path_carb_Spilderbu =  r'\Norskehavet Nord 3\spilderbu_karbon_2018.xlsx'
-
-path_cell_Storbukta =  r'\Norskehavet Nord 3\Storbukta_celler.L_2018.xlsx'
-path_carb_Storbukta =  r'\Norskehavet Nord 3\Storbukta_karbon_2018.xlsx'
-
-path_cell_Sørfj =  r'\Norskehavet Nord 3\Sørfj_ytre_celler.L_2018.xlsx'
-path_carb_Sørfj =  r'\Norskehavet Nord 3\Sørfj_ytre_karbon_2018.xlsx'
-
-path_cell_Ullsfj =  r'\Norskehavet Nord 3\Ullsfj_celler.L_2918.xlsx'
-path_carb_Ullsfj =  r'\Norskehavet Nord 3\Ullsfj_karbon_2018.xlsx'
-
-path_cell_Ytre =  r'\Norskehavet Nord 3\Ytre kvæn_celler.L_2018.xlsx'
-path_carb_Ytre =  r'\Norskehavet Nord 3\Ytre kvæn_karbon_2018.xlsx'
-
-
-path_cell_blodskytodden_f = r'\Barentshavet\BarentshavetFerrybox\blodskytodden_celler.L_2018.xlsx'
-path_carb_blodskytodden_f = r'\Barentshavet\BarentshavetFerrybox\blodskytodden_karbon_2018.xlsx'
-
-path_cell_Oksebås_f = r'\Barentshavet\BarentshavetFerrybox\Oksebås_Celler.L_2018.xlsx'
-path_carb_Oksebås_f = r'\Barentshavet\BarentshavetFerrybox\oksebås_karbon_2018.xlsx'
-
-path_cell_Tanafj_f = r'\Barentshavet\BarentshavetFerrybox\Tanafj_VR25_Celler.L_2018.xlsx'
-path_carb_Tanafj_f = r'\Barentshavet\BarentshavetFerrybox\tanafj_VR25_Karbon_2018.xlsx'
 
 
 def call_plot_3subpl():
@@ -370,7 +318,8 @@ def plot_station_2subplot_sor(path_cell,path_chla,sheet,stationname,to_title):
     df3_klor = df3_klor.replace({ r'< 0,22$'}, {0}, regex=True)   
     df3_klor = df3_klor.replace({ r'< 0.21$'}, {0}, regex=True)     
     df3_klor = df3_klor.replace({ r'<*$'}, {0}, regex=True) 
-    
+    print (df3_klor)
+
     def get_sum(df):
         new_df = pd.DataFrame()
         for n in range(1,4):
@@ -389,20 +338,24 @@ def plot_station_2subplot_sor(path_cell,path_chla,sheet,stationname,to_title):
     gs.update(wspace=0.1, hspace = 0.33)
     ax0 = plt.subplot(gs[0]) #fig.add_subplot(2, 1, 1) # row-col-num
     ax1 = plt.subplot(gs[1]) #fig.add_subplot(2, 1, 2) 
-    
-    dates2 = to_names2[3:] 
 
+    dates2 = to_names2[3:] 
+    print (df3_klor['sampledate_{}'.format(stationname)])
     try:    
         dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y') 
     except ValueError:
         dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d.%m.%Y %H:%M:%S')   
     except ValueError:
-        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d-Y-%m-%d')   
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%d-%Y-%m-%d')   
+    except ValueError:
+        dates3 = pd.to_datetime(df3_klor['sampledate_{}'.format(stationname)], format='%m/%d/%Y')   
+
+
 
     ax0.set_xticks(dates3)
     ax1.set_xticks(dates2)  
-    
- 
+
+
     for axis in [ax0,ax1]:
         axis.xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
         axis.tick_params(axis='x', rotation=30)
@@ -443,12 +396,72 @@ def plot_station_2subplot_sor(path_cell,path_chla,sheet,stationname,to_title):
     #plt.show()
     #print (new_df)
 
+path_chla = '\klorofyll Norskehavet 1_3_Barentshavet.xlsx'
+
+
+path_carb_bugoynes = r'\Barentshavet\Bugøynes_karbon_2017_2018.xlsx'
+path_cell_bugoynes = r'\Barentshavet\Bugøynes_celler.L_2017_2018.xlsx'  
+
+path_carb_langfjordnes = r'\Barentshavet\Langfjordnes_karbon_2017_2018.xlsx'
+path_cell_langfjordnes = r'\Barentshavet\Langfjordnes_celler.L_2017_2018.xlsx'  
+
+path_carb_Tanafjord = r'\Barentshavet\Tanafjorden_VR24_Karbon_2018.xlsx'
+path_cell_Tanafjord = r'\Barentshavet\Tanafjord_VR24_celler.L_2018.xlsx'  
+
+path_carb_kongsbakk = r'\Norskehavet Nord 1\kongsbakk_karbon_2017_2018.xlsx'
+path_cell_kongsbakk = r'\Norskehavet Nord 1\kongsbakk_celler.L_2017_2018.xlsx'
+
+path_carb_straumsfj = r'\Norskehavet Nord 1\straumsfj_karbon_2017_2018.xlsx'
+path_cell_straumsfj = r'\Norskehavet Nord 1\Straumsfj_celler.L_2017_2018.xlsx'
+
+path_cell_tjukkenes = r'\Norskehavet Nord 1\tjukkenes_celler.L_2017_2018.xlsx'
+path_carb_tjukkenes = r'\Norskehavet Nord 1\tjukkenes_karbon_2017_2108.xlsx'
+
+path_cell_alvenes = r'\Norskehavet Nord 2\alvenes_celler.L_2017_2018.xlsx'
+path_carb_alvenes = r'\Norskehavet Nord 2\alvenes_karbon_2017_2018.xlsx'
+
+path_cell_Setså = r'\Norskehavet Nord 2\setså_celler.L_2017_2018.xlsx'
+path_carb_Setså = r'\Norskehavet Nord 2\setså_karbon_2017_2018.xlsx'
+
+path_cell_Reisafjorden = r'\Norskehavet Nord 3\Reisafj_celler.L_2018.xlsx'
+path_carb_Reisafjorden = r'\Norskehavet Nord 3\Reisafj_karbon_2018.xlsx'
+
+path_cell_Spilderbu =  r'\Norskehavet Nord 3\Spilderbu_celler.L_2018.xlsx'
+path_carb_Spilderbu =  r'\Norskehavet Nord 3\spilderbu_karbon_2018.xlsx'
+
+path_cell_Storbukta =  r'\Norskehavet Nord 3\Storbukta_celler.L_2018.xlsx'
+path_carb_Storbukta =  r'\Norskehavet Nord 3\Storbukta_karbon_2018.xlsx'
+
+path_cell_Sørfj =  r'\Norskehavet Nord 3\Sørfj_ytre_celler.L_2018.xlsx'
+path_carb_Sørfj =  r'\Norskehavet Nord 3\Sørfj_ytre_karbon_2018.xlsx'
+
+path_cell_Ullsfj =  r'\Norskehavet Nord 3\Ullsfj_celler.L_2918.xlsx'
+path_carb_Ullsfj =  r'\Norskehavet Nord 3\Ullsfj_karbon_2018.xlsx'
+
+path_cell_Ytre =  r'\Norskehavet Nord 3\Ytre kvæn_celler.L_2018.xlsx'
+path_carb_Ytre =  r'\Norskehavet Nord 3\Ytre kvæn_karbon_2018.xlsx'
+
+
+path_cell_blodskytodden_f = r'\Barentshavet\BarentshavetFerrybox\blodskytodden_celler.L_2018.xlsx'
+path_carb_blodskytodden_f = r'\Barentshavet\BarentshavetFerrybox\blodskytodden_karbon_2018.xlsx'
+
+path_cell_Oksebås_f = r'\Barentshavet\BarentshavetFerrybox\Oksebås_Celler.L_2018.xlsx'
+path_carb_Oksebås_f = r'\Barentshavet\BarentshavetFerrybox\oksebås_karbon_2018.xlsx'
+
+path_cell_Tanafj_f = r'\Barentshavet\BarentshavetFerrybox\Tanafj_VR25_Celler.L_2018.xlsx'
+path_carb_Tanafj_f = r'\Barentshavet\BarentshavetFerrybox\tanafj_VR25_Karbon_2018.xlsx'
+
+
+
+
+
 
 path_chla2 = r'\klorofyll.xlsx'
 path_cell_korsen = r'\rapportCellerKorsen_2017_2018.xlsx'
 path_cell_skinbrokleia = r'\Skinnbrokleia_Celler.L_2017_2018.xlsx'
 path_cell_heroyfri = r'\herøyfj_celler.L_2018.xlsx'
-call_plot_2subpl() 
+#call_plot_2subpl() 
 #plot_station_2subplot_sor(path_cell_korsen , path_chla2, sheet = 'Ark1', stationname ='Korsen VR51',  to_title = 'VR51 Korsen')
 #plot_station_2subplot_sor(path_cell_skinbrokleia , path_chla2, sheet = 'Ark1', stationname ='Skinnabrokleia VR71',  to_title = 'VR71 Skinnabrokleia')
-#plot_station_2subplot_sor(path_cell_heroyfri , path_chla2, sheet = 'Ark1', stationname ='Herøyfjorden VT72',  to_title = 'VT72 Herøyfjorden')
+
+plot_station_2subplot_sor(path_cell_heroyfri , path_chla2, sheet = 'Ark1', stationname ='Herøyfjorden VT72',  to_title = 'VT72 Herøyfjorden')
